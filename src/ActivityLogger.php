@@ -182,7 +182,8 @@ class ActivityLogger
 
     protected function normalizeCauser($modelOrId)
     {
-        if ($modelOrId instanceof config('activitylog.causer_mode')) {
+        $causer = config('activitylog.causer_mode');
+        if ($modelOrId instanceof $causer) {
             return $modelOrId;
         }
 
@@ -190,7 +191,7 @@ class ActivityLogger
         $provider = method_exists($guard, 'getProvider') ? $guard->getProvider() : null;
         $model = method_exists($provider, 'retrieveById') ? $provider->retrieveById($modelOrId) : null;
 
-        if ($model instanceof config('activitylog.causer_mode')) {
+        if ($model instanceof $causer) {
             return $model;
         }
 

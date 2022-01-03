@@ -19,7 +19,7 @@ interface Activity
 
     public function scopeInLog(Builder $query, ...$logNames): Builder;
 
-    public function scopeCausedBy(Builder $query, Model $causer): Builder;
+    public function scopeCausedBy(Builder $query, $causer): Builder;
 
-    public function scopeForSubject(Builder $query, Model $subject): Builder;
+    public function scopeForSubject(Builder $query, $subject): Builder;
 }

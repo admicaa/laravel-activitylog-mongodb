@@ -13,7 +13,7 @@ trait DetectsChanges
     protected static function bootDetectsChanges()
     {
         if (static::eventsToBeRecorded()->contains('updated')) {
-            static::updating(function (Model $model) {
+            static::updating(function ($model) {
 
                 //temporary hold the original attributes on the model
                 //as we'll need these in the updating event
@@ -59,7 +59,7 @@ trait DetectsChanges
 
     public function shouldLogOnlyDirty(): bool
     {
-        if (! isset(static::$logOnlyDirty)) {
+        if (!isset(static::$logOnlyDirty)) {
             return false;
         }
 
@@ -68,11 +68,11 @@ trait DetectsChanges
 
     public function shouldLogUnguarded(): bool
     {
-        if (! isset(static::$logUnguarded)) {
+        if (!isset(static::$logUnguarded)) {
             return false;
         }
 
-        if (! static::$logUnguarded) {
+        if (!static::$logUnguarded) {
             return false;
         }
 
@@ -85,17 +85,16 @@ trait DetectsChanges
 
     public function attributeValuesToBeLogged(string $processingEvent): array
     {
-        if (! count($this->attributesToBeLogged())) {
+        if (!count($this->attributesToBeLogged())) {
             return [];
         }
 
         $properties['attributes'] = static::logChanges(
             $processingEvent == 'retrieved'
                 ? $this
-                : (
-                    $this->exists
-                        ? $this->fresh() ?? $this
-                        : $this
+                : ($this->exists
+                    ? $this->fresh() ?? $this
+                    : $this
                 )
         );
 
@@ -127,7 +126,7 @@ trait DetectsChanges
         return $properties;
     }
 
-    public static function logChanges(Model $model): array
+    public static function logChanges($model): array
     {
         $changes = [];
         $attributes = $model->attributesToBeLogged();
@@ -173,7 +172,7 @@ trait DetectsChanges
         return $changes;
     }
 
-    protected static function getRelatedModelAttributeValue(Model $model, string $attribute): array
+    protected static function getRelatedModelAttributeValue($model, string $attribute): array
     {
         $relatedModelNames = explode('.', $attribute);
         $relatedAttribute = array_pop($relatedModelNames);
@@ -185,14 +184,14 @@ trait DetectsChanges
             $attributeName[] = $relatedModelName = Str::camel(array_shift($relatedModelNames));
 
             $relatedModel = $relatedModel->$relatedModelName ?? $relatedModel->$relatedModelName();
-        } while (! empty($relatedModelNames));
+        } while (!empty($relatedModelNames));
 
         $attributeName[] = $relatedAttribute;
 
         return [implode('.', $attributeName) => $relatedModel->$relatedAttribute ?? null];
     }
 
-    protected static function getModelAttributeJsonValue(Model $model, string $attribute)
+    protected static function getModelAttributeJsonValue($model, string $attribute)
     {
         $path = explode('->', $attribute);
         $modelAttribute = array_shift($path);

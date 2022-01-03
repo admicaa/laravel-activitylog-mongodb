@@ -1,5 +1,5 @@
 {
-    "name": "mostafamaklad/laravel-activitylog-mongodb",
+    "name": "admicaa/laravel-activitylog-mongodb",
     "description": "A very simple activity logger to monitor the users of your website or application",
     "keywords": [
         "spatie",
@@ -10,9 +10,9 @@
         "mongodb",
         "laravel-mongodb",
         "maklad",
-        "mostafamaklad"
+        "admicaa"
     ],
-    "homepage": "https://github.com/mostafamaklad/laravel-activitylog-mongodb",
+    "homepage": "https://github.com/admicaa/laravel-activitylog-mongodb",
     "license": "MIT",
     "authors": [
         {
@@ -34,7 +34,7 @@
             "role": "Developer"
         },
         {
-            "name": "mostafamaklad",
+            "name": "admicaa",
             "email": "dev.mostafa.maklad@gmail.com",
             "homepage": "https://maklad.dev",
             "role": "Developer"

@@ -48,14 +48,14 @@ class ActivityLogger
         return $this;
     }
 
-    public function performedOn(Model $model)
+    public function performedOn($model)
     {
         $this->getActivity()->subject()->associate($model);
 
         return $this;
     }
 
-    public function on(Model $model)
+    public function on($model)
     {
         return $this->performedOn($model);
     }
@@ -180,9 +180,9 @@ class ActivityLogger
         }
     }
 
-    protected function normalizeCauser($modelOrId): Model
+    protected function normalizeCauser($modelOrId)
     {
-        if ($modelOrId instanceof Model) {
+        if ($modelOrId instanceof config('activitylog.causer_mode')) {
             return $modelOrId;
         }
 
@@ -190,7 +190,7 @@ class ActivityLogger
         $provider = method_exists($guard, 'getProvider') ? $guard->getProvider() : null;
         $model = method_exists($provider, 'retrieveById') ? $provider->retrieveById($modelOrId) : null;
 
-        if ($model instanceof Model) {
+        if ($model instanceof config('activitylog.causer_mode')) {
             return $model;
         }
 
@@ -204,7 +204,7 @@ class ActivityLogger
 
             $attribute = Str::before(Str::after($match, ':'), '.');
 
-            if (! in_array($attribute, ['subject', 'causer', 'properties'])) {
+            if (!in_array($attribute, ['subject', 'causer', 'properties'])) {
                 return $match;
             }
 
@@ -224,7 +224,7 @@ class ActivityLogger
 
     protected function getActivity(): ActivityContract
     {
-        if (! $this->activity instanceof ActivityContract) {
+        if (!$this->activity instanceof ActivityContract) {
             $this->activity = ActivitylogServiceProvider::getActivityModelInstance();
             $this
                 ->useLog($this->defaultLogName)

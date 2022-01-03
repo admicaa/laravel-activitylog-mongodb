@@ -21,6 +21,7 @@ Activity::all();
 ```
 
 Here's a more advanced example:
+
 ```php
 activity()
    ->performedOn($anEloquentModel)
@@ -35,7 +36,6 @@ $lastLoggedActivity->causer; //returns an instance of your user model
 $lastLoggedActivity->getExtraProperty('customProperty'); //returns 'customValue'
 $lastLoggedActivity->description; //returns 'Look, I logged something'
 ```
-
 
 Here's an example on [event logging](https://docs.spatie.be/laravel-activitylog/v3/advanced-usage/logging-model-events).
 
@@ -76,6 +76,7 @@ We invest a lot of resources into creating [best in class open source packages](
 We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
 
 ## Documentation
+
 You'll find the documentation on [https://docs.spatie.be/laravel-activitylog](https://docs.spatie.be/laravel-activitylog).
 
 Find yourself stuck using the package? Found a bug? Do you have general questions or suggestions for improving the activity log? Feel free to [create an issue on GitHub](https://github.com/spatie/laravel-activitylog/issues), we'll try to address it as soon as possible.
@@ -86,27 +87,28 @@ If you've found a security issue please mail [freek@spatie.be](mailto:freek@spat
 
 You can install the package via composer:
 
-``` bash
-composer require mostafamaklad/laravel-activitylog-mongodb
+```bash
+composer require admicaa/laravel-activitylog-mongodb
 ```
 
 The package will automatically register itself.
 
 You can publish the migration with:
+
 ```bash
 php artisan vendor:publish --provider="Spatie\Activitylog\ActivitylogServiceProvider" --tag="migrations"
 ```
 
-*Note*: The default migration assumes you are using integers for your model IDs. If you are using UUIDs, or some other format, adjust the format of the subject_id and causer_id fields in the published migration before continuing.
+_Note_: The default migration assumes you are using integers for your model IDs. If you are using UUIDs, or some other format, adjust the format of the subject_id and causer_id fields in the published migration before continuing.
 
 After publishing the migration you can create the `activity_log` table by running the migrations:
-
 
 ```bash
 php artisan migrate
 ```
 
 You can optionally publish the config file with:
+
 ```bash
 php artisan vendor:publish --provider="Spatie\Activitylog\ActivitylogServiceProvider" --tag="config"
 ```
@@ -176,7 +178,7 @@ Please see [UPGRADING](UPGRADING.md) for details.
 
 ## Testing
 
-``` bash
+```bash
 composer test
 ```
 
@@ -190,9 +192,9 @@ If you discover any security related issues, please email freek@spatie.be instea
 
 ## Credits
 
-- [Freek Van der Herten](https://github.com/freekmurze)
-- [Sebastian De Deyne](https://github.com/sebastiandedeyne)
-- [All Contributors](../../contributors)
+-   [Freek Van der Herten](https://github.com/freekmurze)
+-   [Sebastian De Deyne](https://github.com/sebastiandedeyne)
+-   [All Contributors](../../contributors)
 
 ## License
 

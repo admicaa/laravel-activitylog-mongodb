@@ -52,7 +52,7 @@ class AnotherInvalidActivity implements ActivityContract
 
     public function changes(): Collection
     {
-        if (! $this->properties instanceof Collection) {
+        if (!$this->properties instanceof Collection) {
             return new Collection();
         }
 
@@ -78,7 +78,7 @@ class AnotherInvalidActivity implements ActivityContract
      *
      * @return Builder
      */
-    public function scopeCausedBy(Builder $query, Model $causer): Builder
+    public function scopeCausedBy(Builder $query, $causer): Builder
     {
         return $query
             ->where('causer_type', $causer->getMorphClass())
@@ -93,7 +93,7 @@ class AnotherInvalidActivity implements ActivityContract
      *
      * @return Builder
      */
-    public function scopeForSubject(Builder $query, Model $subject): Builder
+    public function scopeForSubject(Builder $query, $subject): Builder
     {
         return $query
             ->where('subject_type', $subject->getMorphClass())
